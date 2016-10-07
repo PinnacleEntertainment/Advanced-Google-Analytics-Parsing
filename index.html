@@ -1,0 +1,21 @@
+@*The below script appends the google analytics tracking code to document head and switches the script src based on the condition below.
+  This is for the google analytics custom dimension property that track Tier and Player ID of authenticated users - added 10/7/16*@
+<script>
+    //if the text "current-status" exists within the url and returns the custom script
+    if(window.location.href.indexOf("current-status") > -1)
+    {
+        $(document).ready(function () {
+            var googleScript = document.createElement('script');
+            googleScript.setAttribute('src', '../Scripts/CurrentStatusGAScript.js');
+            document.head.appendChild(googleScript);
+        });
+    }
+    //if the text "current-status" doesn't exist within the url it will fall back to the global script
+    else{
+        $(document).ready(function () {
+            var googleScript = document.createElement('script');
+            googleScript.setAttribute('src', '../Scripts/GlobalGA.js');
+            document.head.appendChild(googleScript);
+        });
+    }
+</script>
